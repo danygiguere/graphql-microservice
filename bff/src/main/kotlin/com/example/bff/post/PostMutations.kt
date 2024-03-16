@@ -10,7 +10,7 @@ import org.springframework.validation.annotation.Validated
 
 @DgsComponent
 @Validated
-class PostMutation(private val postService: PostService)  {
+class PostMutation(private val postService: PostService) {
     @DgsData(parentType = "Mutation", field = "addPost")
     suspend fun addPost(@Valid @InputArgument("inputPost") inputPost: InputPost): PostDto? {
         val postDto = PostDto(id = 1, userId = 0, title = inputPost.title, description = inputPost.description)
