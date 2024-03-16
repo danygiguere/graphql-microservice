@@ -1,0 +1,13 @@
+server:
+  port: 8011
+
+spring:
+  application:
+    name: bff
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+

@@ -1,0 +1,45 @@
+type Query {
+    user(idFilter: Int): User
+    users: [User]
+    post(idFilter: Int): Post
+    postWithImages(idFilter: Int): PostWithImages
+    posts: [Post]
+}
+
+type Post {
+    id: ID!
+    userId: ID!
+    title: String!
+    description: String!
+}
+
+type PostWithImages {
+    id: ID!
+    userId: ID!
+    title: String!
+    description: String!
+    images: [Image]!
+}
+
+type User {
+    id: ID!
+    username: String!
+    email: String!
+    password: String
+}
+
+type Image {
+    id: ID!
+    postId: ID!
+    url: String!
+}
+
+input  InputPost {
+    id: ID!
+    title: String!
+    description: String!
+}
+
+type Mutation {
+    addPost(inputPost: InputPost): Post
+}
