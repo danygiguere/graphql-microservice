@@ -8,16 +8,20 @@ import com.netflix.graphql.dgs.InputArgument
 import jakarta.validation.Valid
 import org.springframework.validation.annotation.Validated
 
+
 @DgsComponent
 @Validated
 class PostMutation(private val postService: PostService) {
     @DgsData(parentType = "Mutation", field = "addPost")
-    suspend fun addPost(@Valid @InputArgument("inputPost") inputPost: InputPost): PostDto? {
+    suspend fun addPost(@InputArgument("inputPost") inputPost: InputPost): PostDto? {
         val postDto = PostDto(id = 1, userId = 0, title = inputPost.title, description = inputPost.description)
         return postService.create(postDto)
     }
 }
 
+/*
+for validation in the bff using the @valid annotation, uncomment the lines below
+ */
 //@DgsComponent
 //@Validated
 //class PostMutation(private val postService: PostService)  {
