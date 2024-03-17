@@ -1,8 +1,8 @@
 type Query {
-    user(idFilter: Int): User
+    user(idFilter: ID): User
     users: [User]
-    post(idFilter: Int): Post
-    postWithImages(idFilter: Int): PostWithImages
+    post(idFilter: ID): Post
+    postWithImages(idFilter: ID): PostWithImages
     posts: [Post]
 }
 
@@ -34,7 +34,7 @@ type Image {
     url: String!
 }
 
-input  InputPost {
+input InputPost {
     id: ID!
     title: String!
     description: String!
@@ -42,4 +42,6 @@ input  InputPost {
 
 type Mutation {
     addPost(inputPost: InputPost): Post
+    updatePost(inputPost: InputPost): Int
+    deletePost(idFilter: ID): Int
 }

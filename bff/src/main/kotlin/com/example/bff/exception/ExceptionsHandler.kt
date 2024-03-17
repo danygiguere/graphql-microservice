@@ -20,9 +20,10 @@ class ExceptionsHandler: DataFetcherExceptionHandler {
         val exception = handlerParameters?.exception
 
         if(exception is WebClientResponseException) {
+            val errors = exception.getResponseBodyAs(Map::class.java) as Map<String, List<String>>?
             val graphqlError = TypedGraphQLError.newInternalErrorBuilder()
-                .message("A ConstraintViolationExceptionHandler has occured. Please view the debugInfo for more informations")
-                .debugInfo(exception.getResponseBodyAs(Map::class.java) as Map<String, List<String>>?)
+                .message(errors.toString())
+                .debugInfo(errors)
                 .build()
             val result = DataFetcherExceptionHandlerResult.newResult()
                 .error(graphqlError)
@@ -38,7 +39,7 @@ class ExceptionsHandler: DataFetcherExceptionHandler {
                 }
             }
             val graphqlError = TypedGraphQLError.newInternalErrorBuilder()
-                .message("A ConstraintViolationExceptionHandler has occured. Please view the debugInfo for more informations")
+                .message(errorMap.toString())
                 .debugInfo(errorMap as Map<String, List<String>>?)
                 .build()
             val result = DataFetcherExceptionHandlerResult.newResult()
@@ -46,7 +47,7 @@ class ExceptionsHandler: DataFetcherExceptionHandler {
                 .build()
             return CompletableFuture.completedFuture(result)
         }
-        throw RuntimeException("*** ConstraintViolationExceptionHandler RuntimeException: $exception")
+        throw RuntimeException("*** ExceptionsHandler RuntimeException: $exception")
     }
 
     fun getFieldName(propertyPath: Path): String {
