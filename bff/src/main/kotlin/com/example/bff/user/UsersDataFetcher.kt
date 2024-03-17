@@ -10,12 +10,12 @@ class UsersDataFetcher(private val userService: UserService) {
 
     @DgsData(parentType = "Query", field = "users")
     suspend fun users(): List<UserDto>? {
-        return userService.findAll()
+        return userService.getAll()
     }
 
     @DgsData(parentType = "Query", field = "user")
     suspend fun user(@InputArgument idFilter: Long): UserDto? {
-        return userService.findById(idFilter)
+        return userService.getById(idFilter)
     }
 
 }

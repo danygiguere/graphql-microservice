@@ -12,21 +12,21 @@ class PostService {
 
     val webClient = WebClient.create("http://localhost:8013")
 
-    suspend fun findAll(): List<PostDto>? {
+    suspend fun getAll(): List<PostDto>? {
         return webClient.get()
             .uri("/posts")
             .retrieve()
             .awaitBodyOrNull<List<PostDto>>()
     }
 
-    suspend fun findById(id: Long): PostDto? {
+    suspend fun getById(id: Long): PostDto? {
         return webClient.get()
             .uri("/posts/$id")
             .retrieve()
             .awaitBodyOrNull<PostDto>()
     }
 
-    suspend fun findByIdWithImages(id: Long): PostWithImagesDto? {
+    suspend fun getByIdWithImages(id: Long): PostWithImagesDto? {
         return webClient.get()
             .uri("/posts/$id/with-images")
             .retrieve()

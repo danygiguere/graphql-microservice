@@ -7,41 +7,53 @@ type Query {
 }
 
 type Post {
-    id: ID!
-    userId: ID!
-    title: String!
-    description: String!
+    id: ID
+    userId: ID
+    title: String
+    description: String
 }
 
 type PostWithImages {
-    id: ID!
-    userId: ID!
-    title: String!
-    description: String!
-    images: [Image]!
+    id: ID
+    userId: ID
+    title: String
+    description: String
+    images: [Image]
 }
 
 type User {
-    id: ID!
-    username: String!
-    email: String!
-    password: String
+    id: ID
+    username: String
+    email: String
 }
 
 type Image {
-    id: ID!
-    postId: ID!
-    url: String!
+    id: ID
+    postId: ID
+    url: String
 }
 
 input InputPost {
-    id: ID!
+    id: ID
     title: String!
     description: String!
+}
+
+input registerPayload {
+    email: String!
+    password: String!
+    #passwordConfirmation: String!
+}
+
+input LoginPayload {
+    email: String!
+    password: String!
 }
 
 type Mutation {
     addPost(inputPost: InputPost): Post
     updatePost(inputPost: InputPost): Int
     deletePost(idFilter: ID): Int
+    register(registerPayload: registerPayload): User
+    login(loginPayload: LoginPayload): User
 }

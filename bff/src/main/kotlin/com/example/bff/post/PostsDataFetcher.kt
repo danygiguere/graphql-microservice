@@ -12,17 +12,17 @@ class PostsDataFetcher(private val postService: PostService) {
 
     @DgsData(parentType = "Query", field = "posts")
     suspend fun posts(): List<PostDto>? {
-        return postService.findAll()
+        return postService.getAll()
     }
 
     @DgsData(parentType = "Query", field = "post")
     suspend fun post(@InputArgument idFilter: Long): PostDto? {
-        return postService.findById(idFilter)
+        return postService.getById(idFilter)
     }
 
     @DgsData(parentType = "Query", field = "postWithImages")
     suspend fun postWithImages(@InputArgument idFilter: Long): PostWithImagesDto? {
-        return postService.findByIdWithImages(idFilter)
+        return postService.getByIdWithImages(idFilter)
     }
 
 }
