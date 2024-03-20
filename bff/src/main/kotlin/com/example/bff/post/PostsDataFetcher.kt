@@ -16,7 +16,7 @@ class PostsDataFetcher(private val postService: PostService) {
     }
 
     @DgsData(parentType = "Query", field = "post")
-    suspend fun post(@InputArgument idFilter: Long): PostDto? {
+    suspend fun post(@InputArgument idFilter: Long): PostDto {
         return postService.getById(idFilter)
     }
 

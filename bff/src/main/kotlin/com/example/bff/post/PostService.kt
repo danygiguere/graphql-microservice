@@ -19,11 +19,11 @@ class PostService {
             .awaitBodyOrNull<List<PostDto>>()
     }
 
-    suspend fun getById(id: Long): PostDto? {
+    suspend fun getById(id: Long): PostDto {
         return webClient.get()
             .uri("/posts/$id")
             .retrieve()
-            .awaitBodyOrNull<PostDto>()
+            .awaitBody<PostDto>()
     }
 
     suspend fun getByIdWithImages(id: Long): PostWithImagesDto? {
@@ -31,6 +31,13 @@ class PostService {
             .uri("/posts/$id/with-images")
             .retrieve()
             .awaitBodyOrNull<PostWithImagesDto>()
+    }
+
+    suspend fun getByUserId(id: Long): List<PostDto> {
+        return webClient.get()
+            .uri("/users/$id/posts")
+            .retrieve()
+            .awaitBody<List<PostDto>>()
     }
 
     suspend fun create(postDto: PostDto): PostDto? {

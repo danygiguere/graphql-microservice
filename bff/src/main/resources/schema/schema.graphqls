@@ -1,5 +1,6 @@
 type Query {
     user(idFilter: ID): User
+    userWithPosts(idFilter: ID): UserWithPosts
     users: [User]
     post(idFilter: ID): Post
     postWithImages(idFilter: ID): PostWithImages
@@ -27,6 +28,13 @@ type User {
     email: String
 }
 
+type UserWithPosts {
+    id: ID
+    username: String
+    email: String
+    posts: [Post]
+}
+
 type Image {
     id: ID
     postId: ID
@@ -40,9 +48,9 @@ input InputPost {
 }
 
 input registerPayload {
+    username: String!
     email: String!
     password: String!
-    #passwordConfirmation: String!
 }
 
 input LoginPayload {
@@ -54,6 +62,6 @@ type Mutation {
     addPost(inputPost: InputPost): Post
     updatePost(inputPost: InputPost): Int
     deletePost(idFilter: ID): Int
-    register(registerPayload: registerPayload): User
+    register(registerPayload: registerPayload): String
     login(loginPayload: LoginPayload): User
 }

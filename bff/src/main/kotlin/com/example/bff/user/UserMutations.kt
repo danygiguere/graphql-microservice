@@ -12,8 +12,7 @@ class UserMutations(private val userService: UserService) {
 
     @DgsData(parentType = "Mutation", field = "register")
     suspend fun register(@InputArgument("registerPayload") registerPayload: RegisterPayload): String? {
-        return "not implemented yet"
-//        return userService.register(registerPayload)
+        return userService.register(registerPayload)
     }
 
     @DgsData(parentType = "Mutation", field = "login")

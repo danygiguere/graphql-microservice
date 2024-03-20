@@ -4,6 +4,5 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 
 data class LoginPayload(
     val email: String,
-    @JsonIgnore()
     val password: String?
 )
