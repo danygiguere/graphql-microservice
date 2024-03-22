@@ -34,3 +34,8 @@ logging:
       springframework:
         web: DEBUG
 
+app:
+  token:
+    secret: RANDOM_SECRET_FOR_JWT
+    issuer: ${spring.application.name}
+    expires-minute: 480

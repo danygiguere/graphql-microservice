@@ -1,11 +1,12 @@
-package com.example.usersservice.user.dto
+package com.example.usersservice.requests
 
+import com.example.usersservice.user.dto.UserDto
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
 
-class RegisterPayload(
+class RegisterRequest(
     val id: Long?,
 
     @get:NotNull()
@@ -24,7 +25,7 @@ class RegisterPayload(
     val password: String
 )
 
-fun RegisterPayload.toUserDto(): UserDto = UserDto(
+fun RegisterRequest.toUserDto(): UserDto = UserDto(
     id = id,
     username = username,
     email = email,

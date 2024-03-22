@@ -35,8 +35,9 @@ class UserService {
     }
 
     suspend fun login(loginPayload: LoginPayload): UserDto? {
-        return webClient.get()
+        return webClient.post()
             .uri("/login")
+            .bodyValue(loginPayload)
             .retrieve()
             .awaitBodyOrNull<UserDto>()
     }

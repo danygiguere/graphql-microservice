@@ -9,7 +9,7 @@ import org.springframework.boot.ApplicationRunner
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
 
-//@Profile("local")
+@Profile("local")
 @Component
 class DataSeeder(val flywayConfiguration: FlywayConfiguration,
                  val userRepository: UserRepository
