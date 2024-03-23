@@ -4,10 +4,16 @@ server:
 spring:
   application:
     name: bff
+  main:
+    allow-bean-definition-overriding: true
 
 logging:
   level:
     org:
       springframework:
         web: DEBUG
-
+        http: DEBUG
+        graphql: DEBUG
+      security: DEBUG
+    reactor:
+      netty: debug

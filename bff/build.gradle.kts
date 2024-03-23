@@ -32,9 +32,11 @@ dependencies {
 
 	implementation("com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter")
 
+	developmentOnly("org.springframework.boot:spring-boot-devtools:3.2.4")
+//	implementation("com.auth0:java-jwt:4.4.0")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	testImplementation("org.springframework.security:spring-security-test")
 
-//	implementation("org.springframework.boot:spring-boot-starter-graphql")
-//	testImplementation("org.springframework.graphql:spring-graphql-test")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")

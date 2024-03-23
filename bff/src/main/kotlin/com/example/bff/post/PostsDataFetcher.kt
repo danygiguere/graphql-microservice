@@ -5,11 +5,13 @@ import com.example.bff.post.dto.PostWithImagesDto
 import com.netflix.graphql.dgs.DgsComponent
 import com.netflix.graphql.dgs.DgsData
 import com.netflix.graphql.dgs.InputArgument
+import org.springframework.security.access.prepost.PreAuthorize
 
 
 @DgsComponent
 class PostsDataFetcher(private val postService: PostService) {
 
+    @PreAuthorize("hasRole('USER')")
     @DgsData(parentType = "Query", field = "posts")
     suspend fun posts(): List<PostDto>? {
         return postService.getAll()
