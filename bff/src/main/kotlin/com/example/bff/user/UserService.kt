@@ -1,8 +1,11 @@
 package com.example.bff.user
 
 import com.example.bff.user.dto.LoginPayload
+import com.example.bff.user.dto.LoginResponse
 import com.example.bff.user.dto.RegisterPayload
 import com.example.bff.user.dto.UserDto
+import kotlinx.coroutines.reactor.awaitSingleOrNull
+import org.springframework.http.HttpHeaders
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.awaitBodyOrNull
@@ -34,14 +37,18 @@ class UserService {
             .awaitBodyOrNull<String>()
     }
 
-    suspend fun login(loginPayload: LoginPayload): UserDto? {
-        return webClient.post()
+    suspend fun login(loginPayload: LoginPayload): LoginResponse {
+        val response = webClient.post()
             .uri("/login")
             .bodyValue(loginPayload)
             .retrieve()
-            .awaitBodyOrNull<UserDto>()
+            .toEntity(UserDto::class.java)
+            .awaitSingleOrNull()
+
+        val authToken = response?.headers?.getFirst(HttpHeaders.AUTHORIZATION)
+        val loginResponse = LoginResponse(response?.body, authToken)
+
+        return loginResponse
     }
-
-
 
 }

@@ -1,8 +1,6 @@
 package com.example.bff.user
 
-import com.example.bff.user.dto.LoginPayload
-import com.example.bff.user.dto.RegisterPayload
-import com.example.bff.user.dto.UserDto
+import com.example.bff.user.dto.*
 import com.netflix.graphql.dgs.DgsComponent
 import com.netflix.graphql.dgs.DgsData
 import com.netflix.graphql.dgs.InputArgument
@@ -16,8 +14,7 @@ class UserMutations(private val userService: UserService) {
     }
 
     @DgsData(parentType = "Mutation", field = "login")
-    suspend fun login(@InputArgument("loginPayload") loginPayload: LoginPayload): UserDto? {
+    suspend fun login(@InputArgument("loginPayload") loginPayload: LoginPayload): LoginResponse {
         return userService.login(loginPayload)
     }
-
 }

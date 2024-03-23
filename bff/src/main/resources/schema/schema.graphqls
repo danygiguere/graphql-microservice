@@ -58,10 +58,15 @@ input LoginPayload {
     password: String!
 }
 
+type LoginResponse {
+    user: User!
+    authToken: String!
+}
+
 type Mutation {
     addPost(inputPost: InputPost): Post
     updatePost(inputPost: InputPost): Int
     deletePost(idFilter: ID): Int
     register(registerPayload: registerPayload): String
-    login(loginPayload: LoginPayload): User
+    login(loginPayload: LoginPayload): LoginResponse
 }
