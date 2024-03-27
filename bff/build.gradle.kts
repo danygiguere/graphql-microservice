@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "3.2.3"
+	id("org.springframework.boot") version "3.2.4"
 	id("io.spring.dependency-management") version "1.1.4"
 	kotlin("jvm") version "1.9.22"
 	kotlin("plugin.spring") version "1.9.22"
@@ -32,8 +32,9 @@ dependencies {
 
 	implementation("com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter")
 
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	developmentOnly("org.springframework.boot:spring-boot-devtools:3.2.4")
-//	implementation("com.auth0:java-jwt:4.4.0")
+	implementation("com.auth0:java-jwt:4.4.0")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	testImplementation("org.springframework.security:spring-security-test")
 

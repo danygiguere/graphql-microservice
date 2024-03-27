@@ -4,11 +4,12 @@ server:
 spring:
   application:
     name: bff
-  main:
-    allow-bean-definition-overriding: true
+#  main:
+#    allow-bean-definition-overriding: true
 
 logging:
   level:
+    web: DEBUG
     org:
       springframework:
         web: DEBUG
@@ -17,3 +18,10 @@ logging:
       security: DEBUG
     reactor:
       netty: debug
+
+
+app:
+  token:
+    secret: RANDOM_SECRET_FOR_JWT
+    issuer: users-service
+    expires-minute: 480
