@@ -30,7 +30,7 @@ dependencies {
 	implementation("io.github.microutils:kotlin-logging-jvm:2.0.11")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 
-	implementation("com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter")
+	implementation("com.netflix.graphql.dgs:graphql-dgs-webflux-starter")
 
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	developmentOnly("org.springframework.boot:spring-boot-devtools:3.2.4")
