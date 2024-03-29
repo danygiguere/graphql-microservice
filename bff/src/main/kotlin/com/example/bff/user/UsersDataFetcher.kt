@@ -10,6 +10,7 @@ import com.netflix.graphql.dgs.InputArgument
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import org.springframework.http.HttpHeaders
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.RequestHeader
 
 @DgsComponent

@@ -1,6 +1,5 @@
 package com.example.bff.configuration
 
-import com.example.bff.security.SecurityContextRepository
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity
@@ -16,7 +15,7 @@ import org.springframework.security.web.server.SecurityWebFilterChain
 @EnableWebFluxSecurity
 @Configuration
 @EnableReactiveMethodSecurity
-class SecurityConfig(private val securityContextRepository: SecurityContextRepository) {
+class SecurityConfig() {
 
     // https://docs.spring.io/spring-graphql/reference/security.html
     // https://github.com/spring-projects/spring-graphql/blob/1.0.x/samples/webflux-security/src/main/java/io/spring/sample/graphql/SecurityConfig.java
@@ -31,7 +30,6 @@ class SecurityConfig(private val securityContextRepository: SecurityContextRepos
             .csrf { it.disable() }
             .formLogin { it.disable() }
             .httpBasic { it.disable() }
-            .securityContextRepository(securityContextRepository)
             .authorizeExchange {
                 it.anyExchange().permitAll()
              }
