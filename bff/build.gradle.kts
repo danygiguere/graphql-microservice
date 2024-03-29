@@ -35,6 +35,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	developmentOnly("org.springframework.boot:spring-boot-devtools:3.2.4")
 	implementation("com.auth0:java-jwt:4.4.0")
+	// https://mvnrepository.com/artifact/org.springframework/spring-aspects
+//	implementation("org.springframework:spring-aspects:6.1.5")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	testImplementation("org.springframework.security:spring-security-test")
 
