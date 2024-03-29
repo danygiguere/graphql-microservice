@@ -15,16 +15,18 @@ class UserService {
 
     val webClient = WebClient.create("http://localhost:8012")
 
-    suspend fun getAll(): List<UserDto>? {
+    suspend fun getAll(authorization: String?): List<UserDto>? {
         return webClient.get()
             .uri("/users")
+            .header(HttpHeaders.AUTHORIZATION, authorization)
             .retrieve()
             .awaitBodyOrNull<List<UserDto>>()
     }
 
-    suspend fun getById(id: Long): UserDto? {
+    suspend fun getById(id: Long, authorization: String?): UserDto? {
         return webClient.get()
             .uri("/users/$id")
+            .header(HttpHeaders.AUTHORIZATION, authorization)
             .retrieve()
             .awaitBodyOrNull<UserDto>()
     }

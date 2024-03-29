@@ -6,6 +6,7 @@ import com.example.usersservice.requests.toUserDto
 import com.example.usersservice.security.Tokenizer
 import com.example.usersservice.user.dto.UserDto
 import jakarta.validation.Valid
+import kotlinx.coroutines.flow.Flow
 import mu.KLogging
 import org.springframework.core.env.Environment
 import org.springframework.http.HttpStatus
@@ -27,6 +28,13 @@ class UserController(private val userService: UserService,
     @GetMapping("/status/check")
     fun statusCheck(): String {
         return "Users api is working on port " + env?.getProperty("local.server.port")
+    }
+
+    @GetMapping("/users")
+    suspend fun getAll(): ResponseEntity<Flow<UserDto>?> {
+        val response = userService.findAll()
+        return if (response != null) ResponseEntity.ok(response)
+        else ResponseEntity.notFound().build()
     }
 
     @GetMapping("/users/{id}")

@@ -31,7 +31,7 @@ class SecurityConfig(private val securityContextRepository: SecurityContextRepos
             .csrf { it.disable() }
 //            .formLogin { it.disable() }
 //            .httpBasic { it.disable() }
-            .securityContextRepository(securityContextRepository)
+//            .securityContextRepository(securityContextRepository)
             .authorizeExchange {
                 it.anyExchange().permitAll()
              }

@@ -2,9 +2,11 @@ package com.example.usersservice.user
 
 import com.example.usersservice.user.dto.UserDto
 import com.example.usersservice.user.dto.toUserEntity
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.r2dbc.core.DatabaseClient
 import org.springframework.r2dbc.core.awaitOneOrNull
+import org.springframework.r2dbc.core.flow
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Repository
 
@@ -13,6 +15,11 @@ class UserRepository(private val databaseClient: DatabaseClient,
                      private val userMapper: UserMapper,
                      private val passwordEncoder: PasswordEncoder
 ) {
+
+    suspend fun findAll(): Flow<UserDto>? =
+        databaseClient.sql("SELECT * FROM users")
+            .map(userMapper::apply)
+            .flow()
 
     suspend fun findById(id: Long): UserDto? =
             databaseClient.sql("SELECT * FROM users WHERE id = :id")

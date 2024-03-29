@@ -18,6 +18,9 @@ class PostService(val postRepository: PostRepository,
     suspend fun findById(id: Long): PostDto? =
             postRepository.findById(id)
 
+    suspend fun findByUserId(userId: Long): Flow<PostDto>? =
+        postRepository.findByUserId(userId)
+
     // oneToMany relationship query example
     suspend fun findByIdWithImages(id: Long): PostWithImagesDto? = coroutineScope {
         val post = async{findById(id)}

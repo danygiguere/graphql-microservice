@@ -4,6 +4,7 @@ import com.netflix.graphql.types.errors.TypedGraphQLError
 import graphql.execution.DataFetcherExceptionHandler
 import graphql.execution.DataFetcherExceptionHandlerParameters
 import graphql.execution.DataFetcherExceptionHandlerResult
+import graphql.execution.SimpleDataFetcherExceptionHandler
 import jakarta.validation.ConstraintViolationException
 import jakarta.validation.Path
 import mu.KLogging
@@ -46,6 +47,8 @@ class ExceptionsHandler: DataFetcherExceptionHandler {
                 .error(graphqlError)
                 .build()
             return CompletableFuture.completedFuture(result)
+        } else if(exception is SimpleDataFetcherExceptionHandler) {
+            throw RuntimeException("*** ExceptionsHandler SimpleDataFetcherExceptionHandler: $exception")
         }
         throw RuntimeException("*** ExceptionsHandler RuntimeException: $exception")
     }
