@@ -5,8 +5,9 @@ import com.example.bff.post.dto.PostDto
 import com.netflix.graphql.dgs.DgsComponent
 import com.netflix.graphql.dgs.DgsData
 import com.netflix.graphql.dgs.InputArgument
-import jakarta.validation.Valid
 import org.springframework.http.HttpHeaders
+import org.springframework.security.access.prepost.PreAuthorize
+import jakarta.validation.Valid
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.RequestHeader
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestHeader
 @DgsComponent
 class PostMutation(private val postService: PostService) {
 
+    @PreAuthorize("hasRole('USER')")
     @DgsData(parentType = "Mutation", field = "addPost")
     suspend fun addPost(@InputArgument("inputPost") inputPost: InputPost,
                         @RequestHeader(HttpHeaders.AUTHORIZATION) authorization: String?): PostDto? {
@@ -21,6 +23,7 @@ class PostMutation(private val postService: PostService) {
         return postService.create(postDto, authorization)
     }
 
+    @PreAuthorize("hasRole('USER')")
     @DgsData(parentType = "Mutation", field = "updatePost")
     suspend fun updatePost(@InputArgument("inputPost") inputPost: InputPost,
                            @RequestHeader(HttpHeaders.AUTHORIZATION) authorization: String?): Long? {
@@ -28,6 +31,7 @@ class PostMutation(private val postService: PostService) {
         return postService.update(postDto, authorization)
     }
 
+    @PreAuthorize("hasRole('USER')")
     @DgsData(parentType = "Mutation", field = "deletePost")
     suspend fun deletePost(@InputArgument idFilter: Long,
                            @RequestHeader(HttpHeaders.AUTHORIZATION) authorization: String?): Long? {

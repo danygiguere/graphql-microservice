@@ -29,9 +29,9 @@ class SecurityConfig(private val securityContextRepository: SecurityContextRepos
     fun securityWebFilterChain(http: ServerHttpSecurity): SecurityWebFilterChain? {
         return http
             .csrf { it.disable() }
-//            .formLogin { it.disable() }
-//            .httpBasic { it.disable() }
-//            .securityContextRepository(securityContextRepository)
+            .formLogin { it.disable() }
+            .httpBasic { it.disable() }
+            .securityContextRepository(securityContextRepository)
             .authorizeExchange {
                 it.anyExchange().permitAll()
              }

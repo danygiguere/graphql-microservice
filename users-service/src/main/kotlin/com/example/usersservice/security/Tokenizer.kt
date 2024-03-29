@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
 import com.auth0.jwt.interfaces.DecodedJWT
+import com.example.usersservice.user.UserRoleEnum
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import reactor.core.publisher.Mono
@@ -33,7 +34,7 @@ class Tokenizer {
         return JWT.create()
             .withIssuer(issuer)
             .withSubject(userId)
-            .withClaim("role", "USER")
+            .withClaim("role", UserRoleEnum.ROLE_USER.toString())
             .withExpiresAt(expiresAt)
             .sign(algorithm())
     }

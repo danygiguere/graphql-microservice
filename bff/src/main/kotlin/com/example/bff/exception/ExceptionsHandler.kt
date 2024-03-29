@@ -47,8 +47,6 @@ class ExceptionsHandler: DataFetcherExceptionHandler {
                 .error(graphqlError)
                 .build()
             return CompletableFuture.completedFuture(result)
-        } else if(exception is SimpleDataFetcherExceptionHandler) {
-            throw RuntimeException("*** ExceptionsHandler SimpleDataFetcherExceptionHandler: $exception")
         }
         throw RuntimeException("*** ExceptionsHandler RuntimeException: $exception")
     }

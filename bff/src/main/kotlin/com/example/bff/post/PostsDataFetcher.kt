@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestHeader
 @DgsComponent
 class PostsDataFetcher(private val postService: PostService) {
 
-//    @PreAuthorize("hasRole('USER')")
     @DgsData(parentType = "Query", field = "posts")
     suspend fun posts(@RequestHeader(HttpHeaders.AUTHORIZATION) authorization: String?): List<PostDto>? {
         return postService.getAll(authorization)
