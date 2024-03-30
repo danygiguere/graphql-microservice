@@ -16,3 +16,9 @@ logging:
       security: DEBUG
     reactor:
       netty: debug
+
+
+app:
+  token:
+    secret: RANDOM_SECRET_FOR_JWT
+    issuer: users-service

@@ -1,6 +1,5 @@
 # Microservices example with a GraphQL bff (back end for front end) and micro services, using Spring Boot with Kotlin Coroutines r2dbc and JWT
 
-
 ### About
 
 - This is just a demo project to demonstrate how to build microservices with a GraphQL bff and micro services (using Spring Boot with Kotlin Coroutines, r2dbc and JWT).
