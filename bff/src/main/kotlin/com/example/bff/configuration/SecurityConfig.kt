@@ -1,5 +1,6 @@
 package com.example.bff.configuration
 
+import com.example.bff.security.SecurityContextRepository
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity
@@ -12,7 +13,7 @@ import org.springframework.security.web.server.SecurityWebFilterChain
 @EnableWebFluxSecurity
 @Configuration
 @EnableReactiveMethodSecurity
-class SecurityConfig() {
+class SecurityConfig(private val securityContextRepository: SecurityContextRepository) {
 
     @Bean
     fun passwordEncoder(): PasswordEncoder {
@@ -25,6 +26,7 @@ class SecurityConfig() {
             .csrf { it.disable() }
             .formLogin { it.disable() }
             .httpBasic { it.disable() }
+            .securityContextRepository(securityContextRepository)
             .authorizeExchange {
                 it.pathMatchers("/graphql").permitAll()
                     .pathMatchers("/graphiql").permitAll()
