@@ -24,4 +24,3 @@ app:
   token:
     secret: RANDOM_SECRET_FOR_JWT
     issuer: users-service
-    expires-minute: 480
