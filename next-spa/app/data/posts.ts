@@ -61,5 +61,7 @@ export async function fetchPost(id: number) {
     }),
   });
   if (!res.ok) return undefined;
-  return await res.json();
+  const response = await res.json();
+
+  return await response;
 }

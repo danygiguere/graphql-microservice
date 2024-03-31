@@ -22,7 +22,6 @@ class PostService(val postRepository: PostRepository,
             val postImages = images.await()?.filter { it.postId == post.id }?.toList()
             PostWithImagesDto(post.id, post.userId, post.title, post.description, postImages)
         }
-
     }
 
     suspend fun findById(id: Long): PostDto? =

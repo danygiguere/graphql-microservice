@@ -1,11 +1,17 @@
 
 import { Post, PostWithImages, fetchPost } from "../../data/posts";
+import { notFound } from "next/navigation";
 
 export default async function Post({ params }: { params: { id: number } }) {
   const response = await fetchPost(params.id);
+  
   console.log("response: ", response);
   console.log("response.data: ", response.data);
-  const post = response.data.postWithImages;
+  const post = response?.data?.postWithImages;
+    if (!post) {
+        console.log("not found")
+      return notFound();
+    }
 
   return (
     <>
