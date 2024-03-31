@@ -15,7 +15,8 @@
 ### Todo
 
 - create an app client
+- add security tests
 - aws
 - add jwt and implement Login and register and refresh token
-- block micro services so they only accept requests from the bff
 - implement reset and forgot password
+- block micro services so they only accept requests from the bff
