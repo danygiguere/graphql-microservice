@@ -24,6 +24,13 @@ class PostController(private val postService: PostService,
         else ResponseEntity.notFound().build()
     }
 
+    @GetMapping("/posts-with-images")
+    suspend fun getAllWithImages(): ResponseEntity<Flow<PostWithImagesDto>?> {
+        val response = postService.findAllWithImages()
+        return if (response != null) ResponseEntity.ok(response)
+        else ResponseEntity.notFound().build()
+    }
+
     @GetMapping("/posts/{id}")
     suspend fun getById(@PathVariable id: Long): ResponseEntity<PostDto> {
         val response = postService.findById(id)

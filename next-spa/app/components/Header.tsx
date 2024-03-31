@@ -32,7 +32,7 @@ export default function Header() {
           </div>
           <div className="md:grid md:grid-cols-[150px_1fr] md:pr-4">
             <div className="md:justify-self-start">
-              <Link href={`/`} className="px-4 pt-2 pb-2 grid w-[150px]">
+              <Link href={`/posts`} className="px-4 pt-2 pb-2 grid w-[150px]">
                 <img
                   className="w-[50px]"
                   src="https://placehold.co/400x400"
@@ -48,7 +48,7 @@ export default function Header() {
                 <>
                   <li>
                     <Link
-                      href={`/`}
+                      href={`/sign-in`}
                       className="h-full px-4 py-2 grid md:px-2 md:py-5 hover:bg-white hover:text-black"
                     >
                       Sign In
@@ -56,7 +56,7 @@ export default function Header() {
                   </li>
                   <li className="">
                     <Link
-                      href={`/`}
+                      href={`/sign-up`}
                       className="h-full px-4 py-2 grid md:px-2 md:py-5 hover:bg-white hover:text-black"
                     >
                       Sign Up

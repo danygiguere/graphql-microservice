@@ -19,6 +19,11 @@ class PostsDataFetcher(private val postService: PostService) {
         return postService.getAll(authorization)
     }
 
+    @DgsData(parentType = "Query", field = "postsWithImages")
+    suspend fun postsWithImages(@RequestHeader(HttpHeaders.AUTHORIZATION) authorization: String?): List<PostWithImagesDto>? {
+        return postService.getAllWithImages(authorization)
+    }
+
     @DgsData(parentType = "Query", field = "post")
     suspend fun post(@InputArgument idFilter: Long, @RequestHeader(HttpHeaders.AUTHORIZATION) authorization: String?): PostDto? {
         return postService.getById(idFilter, authorization)

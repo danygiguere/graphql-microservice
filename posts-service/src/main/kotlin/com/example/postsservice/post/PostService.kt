@@ -4,8 +4,7 @@ import com.example.postsservice.image.ImageRepository
 import com.example.postsservice.post.dto.*
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.flow.*
 import org.springframework.stereotype.Service
 
 @Service
@@ -14,6 +13,17 @@ class PostService(val postRepository: PostRepository,
 
     suspend fun findAll(): Flow<PostDto>? =
             postRepository.findAll()
+
+    suspend fun findAllWithImages(): Flow<PostWithImagesDto>? = coroutineScope {
+        val posts = async{findAll()}
+        val images = async{imageRepository.findAll()}
+
+        posts.await()?.map { post ->
+            val postImages = images.await()?.filter { it.postId == post.id }?.toList()
+            PostWithImagesDto(post.id, post.userId, post.title, post.description, postImages)
+        }
+
+    }
 
     suspend fun findById(id: Long): PostDto? =
             postRepository.findById(id)

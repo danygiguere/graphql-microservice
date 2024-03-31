@@ -5,6 +5,7 @@ type Query {
     post(idFilter: ID): Post
     postWithImages(idFilter: ID): PostWithImages
     posts: [Post]
+    postsWithImages: [PostWithImages]
 }
 
 type Post {

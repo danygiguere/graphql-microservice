@@ -21,6 +21,15 @@ class PostService {
             .awaitBodyOrNull<List<PostDto>>()
     }
 
+    suspend fun getAllWithImages(authorization: String?): List<PostWithImagesDto>? {
+        return webClient.get()
+            .uri("/posts-with-images")
+            .header(HttpHeaders.AUTHORIZATION, authorization)
+            .retrieve()
+            .awaitBodyOrNull<List<PostWithImagesDto>>()
+    }
+
+
     suspend fun getById(id: Long, authorization: String?): PostDto? {
         return webClient.get()
             .uri("/posts/$id")
