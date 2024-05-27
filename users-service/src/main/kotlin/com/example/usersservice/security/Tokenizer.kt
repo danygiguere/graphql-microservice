@@ -50,7 +50,7 @@ class Tokenizer {
         }
     }
 
-    private fun algorithm(): Algorithm {
+    public fun algorithm(): Algorithm {
         return Algorithm.HMAC256(secret)
     }
 
